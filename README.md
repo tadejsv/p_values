@@ -15,7 +15,8 @@ chmod 400 ~/.ssh/gindumac-mis.pem
 to set the required permission for the key.
 
 After this, the server can be accessed by executing
-```ssh -i ~/.ssh/gindumac-mis.pem ubuntu@18.195.156.201
+```
+ssh -i ~/.ssh/gindumac-mis.pem ubuntu@18.195.156.201
 ```
 
 ## Setting up a PostgreSQL database
