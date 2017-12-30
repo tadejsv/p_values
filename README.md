@@ -12,6 +12,8 @@ bash Miniconda3-latest-Linux-x86_64.sh
 rm Miniconda3-latest-Linux-x86_64.sh
 ```
 
+For some reason to install some packages gcc also needs to be installed, do it with [this](https://gist.github.com/application2000/73fd6f4bf1be6600a2cf9f56315a2d91#gistcomment-2119543) code.
+
 After that, navigate to the project root directory. From there, create a new environment from the requirements file
 ```
 conda env create -f requirements.txt
@@ -31,6 +33,7 @@ If new packages are installed in the environment, the requirements file can be u
 ```
 conda env export > requirements.txt
 ```
+
 ## Environmental variables and settings configuration
 
 ## Accessing the server
@@ -47,6 +50,29 @@ ssh -i ~/.ssh/p_values.pem ubuntu@18.195.151.190
 ```
 
 ## Setting up a PostgreSQL database
+To store the app data (in this case only user information), a local PostgreSQL database has to be set up. You can do this with.
+
+First install the PostgreSQL on your system with
+```
+sudo apt-get install postgresql postgresql-contrib
+```
+
+Then, login as the postgres user:
+```
+sudo -u postgres psql
+```
+
+Now create a new user and a database
+```
+CREATE USER p_vales PASSWORD 'pvalpass' CREATEDB;
+CREATE DATABASE p_values;
+ALTER DATABASE p_values OWNER TO p_vales;
+```
+
+From then on you can access the database with
+```
+psql -h localhost -U p_vales -W -d p_values
+```
 
 ## Running the app - development
 
