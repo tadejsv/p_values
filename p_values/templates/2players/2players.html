@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+{{ block.super }}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+{% endblock css %}
+
+{% block content %}
+<h1> 2 player games </h1>
+<p>Here you can calculate the p-rationality value for 2 player games with up to 10 strategies.</p>
+
+<div class="container-fluid">
+  <div class="row">
+    <label for="a-rows" class="col-md-auto">Number of A's strategies:</label>
+    <div class="input-group spinner mb-3 col-md-2" data-trigger="spinner" id="a-rows" >
+
+      <div class="input-group-prepend">
+        <button class="btn spin-down" type="button" data-spin="down"><i class="fa fa-caret-down"></i></button>
+      </div>
+      <input type="text" class="form-control text-center" value="2" data-rule="quantity" data-max=10 id="an">
+      <div class="input-group-append">
+        <button class="btn spin-up" data-spin="up"><i class="fa fa-caret-up"></i></button>
+      </div>
+    </div>
+    <div class="w-100"></div>
+
+    <label for="b-rows" class="col-md-auto">Number of B's strategies:</label>
+
+    <div class="input-group spinner mb-3 col-md-2" data-trigger="spinner" id="b-rows" data-max=10>
+
+      <div class="input-group-prepend">
+        <button class="btn spin-down" type="button" data-spin="down"><i class="fa fa-caret-down"></i></button>
+      </div>
+      <input type="text" class="form-control text-center" value="2" data-rule="quantity" data-max=10 id="bn">
+      <div class="input-group-append">
+        <button class="btn spin-up" data-spin="up"><i class="fa fa-caret-up"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="card">
+  <div class="card-header" role="tab" id="headingA">
+    <h5 class="mb-0">
+      <a data-toggle="collapse" href="#collapseA" role="button" aria-expanded="true" aria-controls="collapseA">
+        Player A payoffs
+      </a>
+    </h5>
+  </div>
+
+  <div id="collapseA" class="collapse show" role="tabpanel" aria-labelledby="headingA">
+    <div class="card-body">
+      <table class="table table-responsive" id="table_a">
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header" role="tab" id="headingB">
+    <h5 class="mb-0">
+      <a data-toggle="collapse" href="#collapseB" role="button" aria-expanded="true" aria-controls="collapseB">
+        Player B payoffs
+      </a>
+    </h5>
+  </div>
+
+  <div id="collapseB" class="collapse show" role="tabpanel" aria-labelledby="headingB">
+    <div class="card-body">
+      <table class="table table-responsive" id="table_b">
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header" role="tab" id="headingProb">
+    <h5 class="mb-0">
+      <a data-toggle="collapse" href="#collapseProb" role="button" aria-expanded="true" aria-controls="collapseProb">
+        Empirical frequencies (probabilities)
+      </a>
+    </h5>
+  </div>
+
+  <div id="collapseProb" class="collapse show" role="tabpanel" aria-labelledby="headingProb">
+    <div class="card-body">
+      <table class="table table-responsive" id="table_p">
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="m-3">
+  <button id="calcButton" type="button" class="btn btn-primary" onclick="calculate();">Calculate</button>
+  <button type="button" class="btn btn-secondary" onclick="clearAll();">Clear All</button>
+<div/>
+
+<hr/>
+
+<div id="results">
+  <h4> Results: </h4>
+  <div id="results-txt">
+  </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+{{ block.super }}
+<script>
+var calculate_url = "{% url 'two_players:calculation' %}"
+</script>
+
+<script src="{% static 'js/editable_table.js' %}"></script>
+<script src="{% static 'js/spinner.js' %}"></script>
+<script src="{% static 'js/2player.js' %}"></script>
+
+{% endblock javascript %}

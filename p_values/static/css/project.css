@@ -19,3 +19,10 @@
 [hidden][style="display: block;"] {
   display: block !important;
 }
+
+/* to correctly display indices as subscripts */
+.index {
+    position: relative;
+    top: 0.3em;
+    font-size: 0.8em;
+}

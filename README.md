@@ -34,6 +34,21 @@ If new packages are installed in the environment, the requirements file can be u
 conda env export > requirements.txt
 ```
 
+## Using Gulp
+
+First, you need to install Node.js and npm
+```
+sudo apt-get install nodejs
+sudo apt-get install npm
+```
+
+Then install Gulp with
+```
+sudo npm install gulp-cli -g
+npm install gulp -D
+```
+
+
 ## Environmental variables and settings configuration
 
 ## Accessing the server
