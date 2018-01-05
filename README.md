@@ -48,6 +48,7 @@ sudo npm install gulp-cli -g
 npm install gulp -D
 ```
 
+The gulpfile included with the cookiecutter template is complete enough so that we do not have to do anything else. All that remains is to run the default gulp task (described in development deployment section).
 
 ## Environmental variables and settings configuration
 
@@ -90,5 +91,11 @@ psql -h localhost -U p_vales -W -d p_values
 ```
 
 ## Running the app - development
+When running the app in development mode, it's best to run it with Gulp:
+```
+gulp
+```
+
+Gulp then automatically runs some tasks (css compilation, js minification...), and also performs a `python manage.py runserver` command, and uses browsersync for live reload when any of the static files change (as it watches for changes).
 
 ## Running the app - deployment

@@ -56,6 +56,7 @@ LOCAL_APPS = [
     # custom users app
     'p_values.users.apps.UsersConfig',
     # Your stuff: custom apps go here
+    'p_values.two_player.apps.TwoPlayerConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -111,7 +112,7 @@ MANAGERS = ADMINS
 # Uses django-environ to accept uri format
 # See: https://django-environ.readthedocs.io/en/latest/#supported-types
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres://p_vales:pvalpass@localhost:5432/p_values'),
+    'default': env.db('DATABASE_URL'),
 }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 

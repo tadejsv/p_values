@@ -11,12 +11,12 @@ urlpatterns = [
     url(r'^$', RedirectView.as_view(pattern_name='two_players:main'), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name='pages/about.html'), name='about'),
 
-    # Django Admin, use {% url 'admin:index' %}
-    url(settings.ADMIN_URL, admin.site.urls),
+    # Django Admin, use {% url 'admin:index' %} - for now not needed
+    # url(settings.ADMIN_URL, admin.site.urls),
 
-    # User management
-    url(r'^users/', include('p_values.users.urls', namespace='users')),
-    url(r'^accounts/', include('allauth.urls')),
+    # User management (for now not needed as there are no users)
+    #url(r'^users/', include('p_values.users.urls', namespace='users')),
+    #url(r'^accounts/', include('allauth.urls')),
 
     # Your stuff: custom urls includes go here
     url(r'^two-player/', include('p_values.two_player.urls', namespace='two_players')),

@@ -36,9 +36,8 @@ var calculate = function() {
   }
 
   // Disable the calculation button
-  $("#calcButton").attr("onclick", "");
-  $("#calcButton").attr("class", "btn btn-danger");
-  $("#calcButton").html("Stop Calculating");
+  $("#calcButton").prop("disabled", true);
+  $("#calcButton").html("Calculating...");
 
   var a_data = getTableArray("table_a"),
       b_data = getTableArray("table_b"),
@@ -79,8 +78,7 @@ var calculate = function() {
           $("#results-txt").append("<table class=\"table table-sm table-responsive\">"+table_cnt+"</table>");
 
           // Enable the calculation button
-          $("#calcButton").attr("onclick", "calculate();");
-          $("#calcButton").attr("class", "btn btn-primary");
+          $("#calcButton").prop("disabled", false);
           $("#calcButton").html("Calculate");
         }
       }

@@ -1,1 +1,10 @@
 {% extends "base.html" %}
+
+{% block content %}
+<h1> About </h1>
+This webapp enables the calculation of p-rationality values based on <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2717741">this paper</a>
+by Fabrizio Germano and Peio Zuazo-Garin. The uses the linprog module of the <a href="https://www.scipy.org/">scipy</a> package to check for the existence of a solution for a given p value,
+and uses simple bisection to approximate the upper bound.
+</br>
+
+{% endblock content %}
