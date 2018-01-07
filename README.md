@@ -51,6 +51,15 @@ npm install gulp -D
 The gulpfile included with the cookiecutter template is complete enough so that we do not have to do anything else. All that remains is to run the default gulp task (described in development deployment section).
 
 ## Environmental variables and settings configuration
+On the local development machine, you do not need to add any environmental variables, just make sure they are all in the `.env` file. On the server, add the following to `~/.bashrc`:
+```
+# Django stuff
+export DJANGO_SETTINGS_MODULE="config.settings.production"
+export DJANGO_SECRET_KEY="Fe]Y-?subj%AO}#K/stD$=$f|42S9T+FWhe2E.RQhYSo/mD1uG"
+export DJANGO_ADMIN_URL="r'^admin/'"
+export DJANGO_ALLOWED_HOSTS="['18.195.151.190']"
+export DATABASE_URL="postgres://p_vales:pvalpass@localhost:5432/p_values"
+```
 
 ## Accessing the server
 
@@ -99,3 +108,4 @@ gulp
 Gulp then automatically runs some tasks (css compilation, js minification...), and also performs a `python manage.py runserver` command, and uses browsersync for live reload when any of the static files change (as it watches for changes).
 
 ## Running the app - deployment
+The app is deployed using gunicorn, gnix and supervisor. We'll also use a SSL certificate.
