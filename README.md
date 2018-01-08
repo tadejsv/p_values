@@ -57,7 +57,7 @@ On the local development machine, you do not need to add any environmental varia
 export DJANGO_SETTINGS_MODULE="config.settings.production"
 export DJANGO_SECRET_KEY="Fe]Y-?subj%AO}#K/stD$=$f|42S9T+FWhe2E.RQhYSo/mD1uG"
 export DJANGO_ADMIN_URL="r'^admin/'"
-export DJANGO_ALLOWED_HOSTS="['18.195.151.190']"
+export DJANGO_ALLOWED_HOSTS="['18.195.151.190', '.p-rationality.com']"
 export DATABASE_URL="postgres://p_vales:pvalpass@localhost:5432/p_values"
 ```
 
