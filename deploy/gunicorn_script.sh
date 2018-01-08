@@ -1,7 +1,7 @@
 export DJANGO_SETTINGS_MODULE="config.settings.production"
 export DJANGO_SECRET_KEY="Fe]Y-?subj%AO}#K/stD$=$f|42S9T+FWhe2E.RQhYSo/mD1uG"
 export DJANGO_ADMIN_URL="r'^admin/'"
-export DJANGO_ALLOWED_HOSTS="['18.195.151.190', '.p-rationality.com']"
+export DJANGO_ALLOWED_HOSTS="['*']"
 export DATABASE_URL="postgres://p_vales:pvalpass@localhost:5432/p_values"
 export PATH="/home/ubuntu/miniconda3/bin:$PATH"
 
