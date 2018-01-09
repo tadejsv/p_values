@@ -171,3 +171,12 @@ Finally, we configure nginx again. Let's copy the nginx conf file to its distrib
 sudo cp ~/p_values/deploy/p_values.conf /etc/nginx/sites-available
 sudo ln -s /etc/nginx/sites-available/p_values.conf /etc/nginx/sites-enabled
 ```
+
+Check that the configuration is ok with
+```
+sudo nginx -t
+```
+and after that restart nginx using
+```
+
+```
