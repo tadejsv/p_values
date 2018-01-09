@@ -57,7 +57,7 @@ On the local development machine, you do not need to add any environmental varia
 export DJANGO_SETTINGS_MODULE="config.settings.production"
 export DJANGO_SECRET_KEY="Fe]Y-?subj%AO}#K/stD$=$f|42S9T+FWhe2E.RQhYSo/mD1uG"
 export DJANGO_ADMIN_URL="r'^admin/'"
-export DJANGO_ALLOWED_HOSTS="['52.58.183.47', '.p-rationality.com']"
+export DJANGO_ALLOWED_HOSTS="52.58.183.47",".p-rationality.com"
 export DATABASE_URL="postgres://p_vales:pvalpass@localhost:5432/p_values"
 ```
 
@@ -143,4 +143,31 @@ sudo certbot --nginx -d p-rationality.com -d www.p-rationality.com
 
 Now go to https://www.p-rationality.com/ to check that the certificate and nginx indeed work (you should get the default nginx welcome page, and the browser should report that the website is secure).
 
-###
+
+### Configuring supervisor and gunicorn
+First, install supervisor and gunicorn
+```
+sudo apt-get install supervisor gunicorn
+```
+Now create a directory where supervisor will log events:
+```
+sudo mkdir /var/log/gunicorn
+```
+
+Also, copy the supervisor conf (which makes sure supervisor executes gunicorn) file to its directory:
+```
+sudo cp  ~/p_values/deploy/supervisor.conf /etc/supervisor/conf.d
+```
+
+Now update supervisor:
+```
+sudo supervisorctl reread
+sudo supervisorctl update
+```
+
+### Configuring nginx
+Finally, we configure nginx again. Let's copy the nginx conf file to its distribution and create a link:
+```
+sudo cp ~/p_values/deploy/p_values.conf /etc/nginx/site-available
+ln -s /etc/nginx/sites-available/p_values /etc/nginx/sites-enabled
+```
