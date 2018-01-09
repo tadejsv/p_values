@@ -178,5 +178,7 @@ sudo nginx -t
 ```
 and after that restart nginx using
 ```
-
+sudo systemctl restart nginx
 ```
+
+If all went well, the website should now be live!
