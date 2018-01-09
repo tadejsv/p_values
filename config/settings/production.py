@@ -7,8 +7,6 @@ Production settings for P-values project.
 - Use Redis for cache
 
 - Use sentry for error logging
-
-
 """
 
 import logging

@@ -71,7 +71,7 @@ to set the required permission for the key.
 
 After this, the server can be accessed by executing
 ```
-ssh -i ~/.ssh/p_values.pem ubuntu@18.195.151.190
+ssh -i ~/.ssh/p_values.pem ubuntu@52.58.183.47
 ```
 
 ## Setting up a PostgreSQL database
