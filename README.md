@@ -168,6 +168,6 @@ sudo supervisorctl update
 ### Configuring nginx
 Finally, we configure nginx again. Let's copy the nginx conf file to its distribution and create a link:
 ```
-sudo cp ~/p_values/deploy/p_values.conf /etc/nginx/site-available
-ln -s /etc/nginx/sites-available/p_values /etc/nginx/sites-enabled
+sudo cp ~/p_values/deploy/p_values.conf /etc/nginx/sites-available
+sudo ln -s /etc/nginx/sites-available/p_values.conf /etc/nginx/sites-enabled
 ```
