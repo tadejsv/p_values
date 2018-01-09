@@ -108,4 +108,35 @@ gulp
 Gulp then automatically runs some tasks (css compilation, js minification...), and also performs a `python manage.py runserver` command, and uses browsersync for live reload when any of the static files change (as it watches for changes).
 
 ## Running the app - deployment
-The app is deployed using gunicorn, gnix and supervisor. We'll also use a SSL certificate.
+The app is deployed using gunicorn and ngnix. We'll also use a SSL certificate.
+
+First, we install ngnix (as done in [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)):
+```
+sudo apt-get update
+sudo apt-get install nginx
+```
+
+### Installing SSL certificate
+Now we get the SSL certificate for our website (as done in [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04)). First, we install Certbot
+
+```
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install python-certbot-nginx
+```
+
+Then, we edit the default nginx configuration file and change `server_name` to `p-rationality.com www.p-rationality.com;`:
+`sudo nano /etc/nginx/sites-available/default`
+
+After that, check that everything is ok and reload nginx with
+```
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+And finally, install the certificate with
+```
+sudo certbot --nginx -d p-rationality.com -d www.p-rationality.com
+```
+
+Now go to [https://www.p-rationality.com/] to check that the certificate and nginx indeed work.
