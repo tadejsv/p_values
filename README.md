@@ -57,7 +57,7 @@ On the local development machine, you do not need to add any environmental varia
 export DJANGO_SETTINGS_MODULE="config.settings.production"
 export DJANGO_SECRET_KEY="Fe]Y-?subj%AO}#K/stD$=$f|42S9T+FWhe2E.RQhYSo/mD1uG"
 export DJANGO_ADMIN_URL="r'^admin/'"
-export DJANGO_ALLOWED_HOSTS="['18.195.151.190', '.p-rationality.com']"
+export DJANGO_ALLOWED_HOSTS="['52.58.183.47', '.p-rationality.com']"
 export DATABASE_URL="postgres://p_vales:pvalpass@localhost:5432/p_values"
 ```
 
@@ -126,7 +126,9 @@ sudo apt-get install python-certbot-nginx
 ```
 
 Then, we edit the default nginx configuration file and change `server_name` to `p-rationality.com www.p-rationality.com;`:
-`sudo nano /etc/nginx/sites-available/default`
+```
+sudo nano /etc/nginx/sites-available/default
+```
 
 After that, check that everything is ok and reload nginx with
 ```
@@ -139,4 +141,6 @@ And finally, install the certificate with
 sudo certbot --nginx -d p-rationality.com -d www.p-rationality.com
 ```
 
-Now go to [https://www.p-rationality.com/] to check that the certificate and nginx indeed work.
+Now go to https://www.p-rationality.com/ to check that the certificate and nginx indeed work (you should get the default nginx welcome page, and the browser should report that the website is secure).
+
+###
