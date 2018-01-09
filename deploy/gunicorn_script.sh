@@ -1,4 +1,4 @@
-NAME="p_vales"                                         # Name of the application
+NAME="p_values"                                         # Name of the application
 DJANGODIR="/home/ubuntu/p_values"                      # Django Project Directory
 USER=ubuntu                                            # the user to run as
 GROUP=ubuntu                                           # the group to run as

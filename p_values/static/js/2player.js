@@ -61,7 +61,7 @@ var calculate = function() {
           $("#results-txt").append("<span> Step " + steps + ": " + p_val + success_str + "</span><br>");
 
           steps++;
-          check_p(p_val + (success ? 0.25*Math.pow(0.5, steps-2) : -0.25*Math.pow(0.5, steps-2)));
+          check_p(p_val + (success ? 1 : -1 ) * 0.25*Math.pow(0.5, steps-2));
         } else {
           var list = data["matrix"],
               dims = data["dims"],
@@ -140,7 +140,7 @@ var drawTable = function(a_row, b_row, data, double) {
     body += "<th scope=\"row\">A<span class=\"index\">"+(index+1)+"</span></th>\n";
     for(i=0; i<b_row; i++) {
       // If old data exists, use it - otherwise use 0
-      cell_data = double ? data[j][i].toFixed(4) : (j < d_a & i < d_b ? data[j][i] : 0);
+      cell_data = double ? data[j][i].toFixed(3) : (j < d_a & i < d_b ? data[j][i] : 0);
       body += "<td>"+ cell_data +"</td>\n";
     }
     body += "</tr>\n";
