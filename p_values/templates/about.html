@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block javascript %}
+
+<script src="{% static 'js/vendors~2player~about~ring.bundle.js' %}"></script>
+<script src="{% static 'js/about.bundle.js' %}"></script>
+
+{% endblock javascript %}
+
+{% block about_active %}active{% endblock %}
+
+{% block content %}
+<div class="about">
+  <h1> About </h1>
+  This webapp enables the calculation of p-rationality values based on a paper
+  by Fabrizio Germano and Peio Zuazo-Garin<a id="paper1f" class="footnote" href="#paper1">1</a> titled <i>Bounded rationality and correlated equilibria</i>. The uses the linprog module of the <a href="https://www.scipy.org/">scipy</a> package to check for the existence of a solution for a given p value,
+  and uses simple bisection to approximate the upper bound.
+  </br>
+
+  <div class="footnotes">
+    <hr>
+    <ol>
+      <li id="paper1">
+        <p> Germano, F. & Zuazo-Garin, P. Int J Game Theory (2017) 46: 595. <a href="https://doi.org/10.1007/s00182-016-0547-5">[Link]</a>  <a href="#paper1f" class="footnoteBackLink" title="Jump back to footnote 1 in the text.">↩︎</a></p>
+      </li>
+    </ol>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% load static i18n %}
+
+{% block javascript %}
+<script src="{% static 'js/2player.bundle.js' %}"></script>
+
+<script src="{% static 'js/vendors~2player~about~ring.bundle.js' %}"></script>
+<script src="{% static 'js/vendors~2player~ring.bundle.js' %}"></script>
+
+{% endblock javascript %}
+
+{% block 2player_active %}active{% endblock %}
+
+{% block content %} {% verbatim %}
+<div id="app">
+  <h1>2 player games</h1>
+
+  <div class="row mb-3">
+    <div class="col-sm-auto">
+      <label for="playerAStrategies" class="col-sm-auto">Number of strategies of player A</label>
+    </div>
+    <div class="col-sm-6">
+      <counter v-model="playerAStrategies" id="playerAStrategies"
+      :upper-limit="maxStrategies" :lower-limit="2"></counter>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-sm-auto">
+      <label for="playerBStrategies" class="col-sm-auto">Number of strategies of player B</label>
+    </div>
+    <div class="col-sm-6">
+      <counter v-model="playerBStrategies" id="playerBStrategies"
+      :upper-limit="maxStrategies" :lower-limit="2"></counter>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" role="tab" id="headingA">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" href="#collapseA" role="button" aria-expanded="true" aria-controls="collapseA">
+          Player A payoffs
+        </a>
+      </h5>
+    </div>
+
+    <div id="collapseA" class="collapse show" role="tabpanel" aria-labelledby="headingA">
+      <div class="card-body table-responsive">
+        <edit-table v-model="payoffsA"></edit-table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" role="tab" id="headingB">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" href="#collapseB" role="button" aria-expanded="true" aria-controls="collapseB">
+          Player B payoffs
+        </a>
+      </h5>
+    </div>
+
+    <div id="collapseB" class="collapse show" role="tabpanel" aria-labelledby="headingB">
+      <div class="card-body table-responsive">
+        <edit-table v-model="payoffsB"></edit-table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" role="tab" id="headingProb">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" href="#collapseProb" role="button" aria-expanded="true" aria-controls="collapseProb">
+          Empirical frequencies (probabilities)
+        </a>
+      </h5>
+    </div>
+
+    <div id="collapseProb" class="collapse show" role="tabpanel" aria-labelledby="headingProb">
+      <div class="card-body table-responsive">
+        <edit-table v-model="probabilities"></edit-table>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="alert alert-danger mt-3" v-show="probabilitiesError">
+    The probabilities do not sum up to 1!
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button :disabled="calculating" @click="calculate()" class="btn btn-primary">
+        {{buttonStatus}}
+      </button>
+    </div>
+    <div class="col">
+      <div class="btn-group float-right">
+        <button type="button" class="btn btn-secpndary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Examples
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" @click="setExample(0)">(2x2) Penalty kicks</a>
+          <a class="dropdown-item" @click="setExample(1)">(2x4) Kreps' game</a>
+          <a class="dropdown-item" @click="setExample(2)">(2x2) Matching pennies</a>
+          <a class="dropdown-item" @click="setExample(3)">(2x2) Asymmetric matching pennies</a>
+          <a class="dropdown-item" @click="setExample(4)">(2x2) Inspection game (chimps)</a>
+          <a class="dropdown-item" @click="setExample(5)">(2x2) Inspection game (humans)</a>
+          <a class="dropdown-item" @click="setExample(6)">(2x2) 2 rounds dom. solvable</a>
+          <a class="dropdown-item" @click="setExample(7)">(3x2) 3 rounds dom. solvable</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div v-show="calculated">
+    <h2>Results</h2>
+    <span>Estimated p-value:</span> {{bisection.middle | round(3) }} </br>
+    <span>P-value range:</span> [{{bisection.lower | round(3) }}, {{bisection.upper | round(3) }}]</br>
+  </div>
+
+  <hr>
+  {% endverbatim %}{% endblock content %}
