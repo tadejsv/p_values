@@ -212,6 +212,11 @@ sudo cp ~/p_values/deploy/p_values.conf /etc/nginx/sites-available
 sudo ln -s /etc/nginx/sites-available/p_values.conf /etc/nginx/sites-enabled
 ```
 
+Then, go back to default nginx config and change `server_name` to `_;`:
+```
+sudo nano /etc/nginx/sites-available/default
+```
+
 Check that the configuration is ok with
 ```
 sudo nginx -t
