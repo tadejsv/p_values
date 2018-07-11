@@ -39,8 +39,8 @@ conda env export > requirements.txt
 
 First, you need to install Node.js and npm
 ```
-sudo apt-get install nodejs
-sudo apt-get install npm
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install -y nodejs
 ```
 
 Then install all the dependencies with
@@ -224,3 +224,9 @@ sudo systemctl restart nginx
 If all went well, the website should now be live!
 
 ## Future improvements
+
+* Move all the common js code to a separate file
+* Use Vue-router and make the app a SPA
+* Related to previous, leave the template compilation to webpack (this reqires hardcoding a few links)
+* Related to previous, have only one django app (computation), which allows to share python code efficiently
+* Try using webpack server for hot reload (with proxy option, probably), instead of browser-sync
